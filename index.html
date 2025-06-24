@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SWM Summer Cases</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="welcomeScreen" class="screen active">
+    <div class="welcome-container">
+      <h1>🌼 Welcome to SWM – Summer Edition Cases 🌼</h1>
+      <p>Here, you'll uncover daily cases from our hospital archives.<br/>
+      Open the case, study the report and analysis, and submit your diagnosis.<br/>
+      <strong>Your insight matters.</strong></p>
+      <label for="userNameInput" class="name-label">👤 Please insert your name to begin:</label>
+      <input type="text" id="userNameInput" placeholder="Enter your name" autocomplete="off" />
+      <button id="registerBtn">Register & Continue</button>
+    </div>
+  </div>
+
+  <div id="caseScreen" class="screen">
+    <header>
+      <h2><i class="fas fa-folder-open"></i> Today's Case Folder</h2>
+      <div id="greeting"></div>
+    </header>
+
+    <main class="folder-layout">
+      <section class="letter case-letter">
+        <h3><i class="fas fa-file-medical"></i> CASE FILE: Unconscious Patient</h3>
+        <p>Patient Ava Reynolds (26) was found unconscious in the hospital restroom at 08:42. No ID found. CPR performed for 2 minutes. Currently in ICU under monitoring.</p>
+      </section>
+      <section class="letter analysis-letter">
+        <h3><i class="fas fa-notes-medical"></i> MEDICAL ANALYSIS</h3>
+        <p>Likely cause: blunt force trauma or possible undiagnosed neurological condition. Pupils non-reactive. Staff reports indicate potential foul play. MRI pending.</p>
+      </section>
+    </main>
+
+    <section class="feedback-section">
+      <form action="https://formsubmit.co/bela74028@gmail.com" method="POST" onsubmit="return handleSubmission();">
+        <label for="diagnosisInput">📝 Please submit your diagnosis:</label>
+        <textarea id="diagnosisInput" name="diagnosis" required placeholder="Enter your diagnosis here..."></textarea>
+        <input type="hidden" id="userNameField" name="name" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <button id="submitDiagnosisBtn" type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
