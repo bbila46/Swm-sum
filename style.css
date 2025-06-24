@@ -1,5 +1,11 @@
-body {
+/* Base Styling */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: 'Quicksand', sans-serif;
   background: #FFFDF7;
   color: #333;
@@ -8,7 +14,6 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  box-sizing: border-box;
 }
 
 h1, h2, h3 {
@@ -19,10 +24,10 @@ h1, h2, h3 {
 
 .screen {
   display: none;
-  max-width: 900px;
+  max-width: 960px;
   width: 100%;
   background: white;
-  padding: 2rem 3rem;
+  padding: 2rem 2rem;
   border-radius: 15px;
   box-shadow: 0 10px 40px rgba(100,100,100,0.1);
   animation: fadeIn 0.8s ease forwards;
@@ -32,9 +37,9 @@ h1, h2, h3 {
   display: block;
 }
 
+/* Welcome Section */
 .welcome-container {
   text-align: center;
-  color: #A35C38;
 }
 
 .name-label {
@@ -46,7 +51,7 @@ h1, h2, h3 {
 }
 
 input[type="text"] {
-  width: 80%;
+  width: 90%;
   max-width: 400px;
   padding: 10px 15px;
   margin-top: 0.5rem;
@@ -61,6 +66,7 @@ input[type="text"]:focus {
   border-color: #4D7BA7;
 }
 
+/* Button */
 button {
   margin-top: 1rem;
   background: #FFD89B;
@@ -79,18 +85,29 @@ button:hover {
   background: #FFB347;
 }
 
+/* Header */
 header {
   margin-bottom: 1.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+#greeting {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #4D7BA7;
+  margin-top: 0.5rem;
+}
+
+/* Folder Layout */
 .folder-layout {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .letter {
@@ -100,16 +117,19 @@ header {
   padding: 20px 25px;
   box-shadow: 0 4px 20px rgba(203, 147, 80, 0.15);
   font-size: 1rem;
+  color: #4A463F;
   font-family: 'DM Serif Display', serif;
   min-height: 220px;
   overflow-y: auto;
 }
 
+/* Feedback Section */
 .feedback-section label {
   font-weight: 600;
   color: #A35C38;
   display: block;
   margin-bottom: 0.6rem;
+  font-size: 1.1rem;
 }
 
 textarea {
@@ -129,13 +149,48 @@ textarea:focus {
   border-color: #4D7BA7;
 }
 
-#greeting {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #4D7BA7;
-}
-
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px);}
   to { opacity: 1; transform: translateY(0);}
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .screen {
+    padding: 1.5rem 1rem;
+  }
+
+  .folder-layout {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .letter {
+    font-size: 0.95rem;
+    padding: 16px 20px;
+  }
+
+  input[type="text"], textarea {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1, h2, h3 {
+    font-size: 1.3rem;
+  }
+
+  .feedback-section label {
+    font-size: 1rem;
+  }
+
+  #greeting {
+    font-size: 1rem;
+  }
 }
