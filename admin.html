@@ -3,46 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SWM Summer Cases</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet">
+  <title>SWM Admin Panel</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 🌼 Welcome Screen -->
-  <div id="welcomeScreen" class="screen active">
-    <h1>🌼 Welcome to SWM – Summer Edition Cases 🌼</h1>
-    <p>Here, you'll uncover daily cases from our hospital archives.<br>Open the case, study the report and analysis, and submit your diagnosis.</p>
-    <label for="nameInput">👤 Please insert your name:</label>
-    <input type="text" id="nameInput" placeholder="Enter your name" />
-    <button id="registerBtn">Register & Continue</button>
+  <div id="loginScreen" class="screen active">
+    <h2>🔐 Admin Login</h2>
+    <input type="password" id="adminPassword" placeholder="Enter admin password" />
+    <button onclick="login()">Login</button>
   </div>
 
-  <!-- 📁 Case Screen -->
-  <div id="caseScreen" class="screen">
-    <header>
-      <h2 id="greeting"></h2>
-    </header>
-
-    <div class="folder">
-      <article class="letter left">
-        <h3>📄 CASE FILE: Patient 0007</h3>
-        <p>A 17-year-old arrives at SWM with persistent nausea, fatigue, and dizziness after several hours in the sun. No vomiting. Blood pressure slightly low.</p>
-        <p>Vitals: 38.5°C fever, dry skin, light-headed.</p>
-      </article>
-      <article class="letter right">
-        <h3>🧪 MEDICAL ANALYSIS</h3>
-        <p>Early signs point to heat exhaustion with possible dehydration. Observation and IV fluids recommended. Symptoms not severe enough for heat stroke.</p>
-      </article>
-    </div>
-
-    <form onsubmit="return handleSubmission()">
-      <input type="hidden" id="nameHiddenInput" />
-      <label for="diagnosisInput">📝 Please write your opinion about your diagnosis:</label>
-      <textarea id="diagnosisInput" required></textarea>
-      <button id="submitDiagnosisBtn">Submit</button>
-    </form>
+  <div id="adminPanel" class="screen">
+    <h2>📋 Submitted Diagnoses</h2>
+    <ul id="responseList"></ul>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const loginScreen = document.getElementById('loginScreen');
+    const adminPanel = document.getElementById('adminPanel');
+    const responseList = document.getElementById('responseList');
+
+    function login() {
+      const pass = document.getElementById('adminPassword').value;
+      if (pass === 'swm2025') {
+        loginScreen.classList.remove('active');
+        adminPanel.classList.add('active');
+        showResponses();
+      } else {
+        alert('Incorrect password!');
+      }
+    }
+
+    function showResponses() {
+      const data = JSON.parse(localStorage.getItem('swmResponses') || '[]');
+      responseList.innerHTML = '';
+      data.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `${entry.name}: ${entry.diagnosis} (${entry.date})`;
+        responseList.appendChild(li);
+      });
+    }
+  </script>
 </body>
 </html>
