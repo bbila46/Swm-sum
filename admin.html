@@ -2,36 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SWM Admin Panel</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SWM Summer Cases</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="loginScreen" class="screen active">
-    <h2>🔐 SWM Admin Login</h2>
-    <p>Enter your password to access submitted diagnoses:</p>
-    <input type="password" id="adminPassword" placeholder="Enter password" />
-    <button onclick="login()">Login</button>
-    <p id="loginMessage" style="color: red;"></p>
+  <!-- 🌼 Welcome Screen -->
+  <div id="welcomeScreen" class="screen active">
+    <h1>🌼 Welcome to SWM – Summer Edition Cases 🌼</h1>
+    <p>Here, you'll uncover daily cases from our hospital archives.<br>Open the case, study the report and analysis, and submit your diagnosis.</p>
+    <label for="nameInput">👤 Please insert your name:</label>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button id="registerBtn">Register & Continue</button>
   </div>
 
-  <div id="adminScreen" class="screen">
-    <h2>📋 Diagnoses Submitted</h2>
-    <table id="responseTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Diagnosis</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Entries loaded here -->
-      </tbody>
-    </table>
+  <!-- 📁 Case Screen -->
+  <div id="caseScreen" class="screen">
+    <header>
+      <h2 id="greeting"></h2>
+    </header>
+
+    <div class="folder">
+      <article class="letter left">
+        <h3>📄 CASE FILE: Patient 0007</h3>
+        <p>A 17-year-old arrives at SWM with persistent nausea, fatigue, and dizziness after several hours in the sun. No vomiting. Blood pressure slightly low.</p>
+        <p>Vitals: 38.5°C fever, dry skin, light-headed.</p>
+      </article>
+      <article class="letter right">
+        <h3>🧪 MEDICAL ANALYSIS</h3>
+        <p>Early signs point to heat exhaustion with possible dehydration. Observation and IV fluids recommended. Symptoms not severe enough for heat stroke.</p>
+      </article>
+    </div>
+
+    <form onsubmit="return handleSubmission()">
+      <input type="hidden" id="nameHiddenInput" />
+      <label for="diagnosisInput">📝 Please write your opinion about your diagnosis:</label>
+      <textarea id="diagnosisInput" required></textarea>
+      <button id="submitDiagnosisBtn">Submit</button>
+    </form>
   </div>
 
-  <script src="admin.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
