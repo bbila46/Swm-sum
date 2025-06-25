@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SWM Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loginScreen" class="screen active">
+    <h2>🔐 SWM Admin Login</h2>
+    <p>Enter your password to access submitted diagnoses:</p>
+    <input type="password" id="adminPassword" placeholder="Enter password" />
+    <button onclick="login()">Login</button>
+    <p id="loginMessage" style="color: red;"></p>
+  </div>
+
+  <div id="adminScreen" class="screen">
+    <h2>📋 Diagnoses Submitted</h2>
+    <table id="responseTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Diagnosis</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Entries loaded here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
