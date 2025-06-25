@@ -1,3 +1,5 @@
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzo8hSeXuNCN0riz4Dk4dxyBsua7Zin_LMEinsHFR93LiPBeM1c0oJN8bcGloBwaVAsow/exec';
+
 document.addEventListener("DOMContentLoaded", () => {
   const welcomeScreen = document.getElementById("welcomeScreen");
   const caseScreen = document.getElementById("caseScreen");
@@ -55,18 +57,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
-    let responses = JSON.parse(localStorage.getItem("swmResponses") || "[]");
-    responses.push({
+    const payload = {
       name: userName,
-      diagnosis: diagnosis,
-      date: new Date().toLocaleString()
-    });
-    localStorage.setItem("swmResponses", JSON.stringify(responses));
-    localStorage.setItem("swmHasSubmitted", "true");
+      diagnosis: diagnosis
+    };
 
-    diagnosisInput.disabled = true;
-    submitDiagnosisBtn.disabled = true;
-    submitDiagnosisBtn.textContent = "Already Submitted";
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        localStorage.setItem("swmHasSubmitted", "true");
+        diagnosisInput.disabled = true;
+        submitDiagnosisBtn.disabled = true;
+        submitDiagnosisBtn.textContent = "Already Submitted";
+        alert("Submitted successfully!");
+      } else {
+        alert("Failed to submit.");
+      }
+    })
+    .catch(error => {
+      console.error("Error!", error.message);
+    });
 
     return false;
   };
